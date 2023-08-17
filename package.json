@@ -1,0 +1,14 @@
+{
+  "name": "telecraft",
+  "version": "0.0.3",
+  "main": "index.js",
+  "repository": "git@github.com:maxkaido/telecraft.git",
+  "author": "Max Kaido <maximkaido@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "type": "module",
+  "dependencies": {
+    "redux": "^4.2.1",
+    "redux-saga": "^1.2.3"
+  }
+}
