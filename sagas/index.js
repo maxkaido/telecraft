@@ -1,8 +1,8 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { INIT_SERVER, INIT_DATABASE, INIT_BOT } from "../actions/index.js";
-import { setupServer } from "../server";
-import { connectToDatabase } from "../database";
-import { initializeBot } from "../bot";
+import { setupServer } from "../server.js";
+import { connectToDatabase } from "../database.js";
+import { initializeBot } from "../bot.js";
 
 function* initServerSaga() {
   yield call(setupServer);
