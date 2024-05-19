@@ -1,15 +1,15 @@
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-import { AppModule } from './app.module';
+import { ApiModule } from './api.module';
 
-async function bootstrap() {
+async function bootstrapApi() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    AppModule,
+    ApiModule,
     {
       transport: Transport.RMQ,
       options: {
-        urls: ['amqp://localhost:5672'],
-        queue: 'notifications_queue',
+        urls: ['amqp://rabbitmq:5672'],
+        queue: 'api_queue',
         queueOptions: {
           durable: false,
         },
@@ -17,7 +17,7 @@ async function bootstrap() {
     },
   );
   app.listen();
-  console.log('Microservice is listening');
+  console.log('API Microservice is listening');
 }
 
-bootstrap();
+bootstrapApi();

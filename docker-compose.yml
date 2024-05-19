@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+  api:
+    build: .
+    command: npm run start:api
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - rabbitmq
+  telegram-bot:
+    build: .
+    command: npm run start:telegram-bot
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - rabbitmq

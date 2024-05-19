@@ -1,15 +1,15 @@
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-import { AppModule } from './app.module';
+import { TelegramBotModule } from './telegram-bot.module';
 
-async function bootstrap() {
+async function bootstrapTelegramBot() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    AppModule,
+    TelegramBotModule,
     {
       transport: Transport.RMQ,
       options: {
-        urls: ['amqp://localhost:5672'],
-        queue: 'notifications_queue',
+        urls: ['amqp://rabbitmq:5672'],
+        queue: 'telegram_bot_queue',
         queueOptions: {
           durable: false,
         },
@@ -17,7 +17,7 @@ async function bootstrap() {
     },
   );
   app.listen();
-  console.log('Microservice is listening');
+  console.log('Telegram Bot Microservice is listening');
 }
 
-bootstrap();
+bootstrapTelegramBot();
